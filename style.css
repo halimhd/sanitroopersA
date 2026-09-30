@@ -1,0 +1,299 @@
+/* --- Pengaturan Dasar --- */
+:root {
+    --primary-color: #4CAF50; /* Hijau Organik */
+    --secondary-color: #2196F3; /* Biru Anorganik */
+    --background-color: #f0f8ff; /* Biru langit muda */
+    --text-color: #333;
+    --white: #ffffff;
+    --accent-color: #FF9800; /* Oranye untuk tombol */
+    --font-heading: 'Fredoka One', cursive;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+}
+
+/* --- Header --- */
+header {
+    background-color: var(--white);
+    padding: 15px 0;
+    border-bottom: 5px solid var(--primary-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* --- Edukasi --- */
+.education-section {
+    background-color: var(--white);
+    margin: 40px 0;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.poster-summary {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.poster-img {
+    max-width: 40%;
+    border-radius: 15px;
+}
+
+.poster-text {
+    flex: 1;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.intro {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.materi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.materi-card {
+    padding: 20px;
+    border-radius: 15px;
+    color: var(--white);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.materi-card:hover {
+    transform: translateY(-5px);
+}
+
+.materi-card h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.materi-card ul {
+    list-style: none;
+    padding: 0;
+    font-weight: 600;
+}
+
+.materi-card li {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+.organik {
+    background-color: var(--primary-color);
+}
+
+.anorganik {
+    background-color: var(--secondary-color);
+}
+
+.character-voice {
+    font-style: italic;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.bin-icon {
+    width: 80px;
+    margin-top: 15px;
+}
+
+/* --- Game --- */
+.game-section {
+    background-color: #fff9e6; /* Kuning muda */
+    margin: 40px 0;
+    padding: 30px;
+    border-radius: 20px;
+    border: 3px dashed var(--accent-color);
+    text-align: center;
+}
+
+.game-title {
+    color: var(--accent-color);
+}
+
+.game-instruction {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+#game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.bins-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.bin {
+    width: 200px;
+    height: 180px;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+    border: 3px solid rgba(0,0,0,0.1);
+}
+
+#bin-organik {
+    background-color: var(--primary-color);
+}
+
+#bin-anorganik {
+    background-color: var(--secondary-color);
+}
+
+.bin-label {
+    font-family: var(--font-heading);
+    color: var(--white);
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.bin.drag-over {
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    transform: scale(1.05);
+}
+
+#trash-item-container {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trash-item {
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-position: center;
+    cursor: grab;
+    transition: transform 0.2s;
+    user-select: none;
+}
+
+.trash-item:active {
+    cursor: grabbing;
+}
+
+.trash-item.hidden {
+    display: none;
+}
+
+.game-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#score {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--accent-color);
+}
+
+button#start-btn {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button#start-btn:hover {
+    background-color: #e68a00;
+}
+
+button#start-btn:active {
+    transform: translateY(2px);
+}
+
+/* --- QR Code --- */
+.qrcode-section {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.qrcode-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.footer-callout {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #333;
+    color: var(--white);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 40px;
+}
