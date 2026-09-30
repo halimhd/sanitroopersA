@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilah Sampah Seru!</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font modern dan ramah anak -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <img src="https://via.placeholder.com/100x40/4CAF50/FFFFFF?text=Logo" alt="Kemenkes Logo" class="logo"> <!-- Ganti dengan logo asli -->
+            <h1>Ayo Pilah Sampah!</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Bagian Edukasi -->
+        <section class="education-section">
+            <div class="poster-summary">
+                <img src="image_0.png" alt="Poster Edukasi Pilah Sampah" class="poster-img"> <!-- Pastikan gambar image_0.png ada di folder yang sama -->
+                <div class="poster-text">
+                    <h2 class="section-title">Kenalan yuk sama Sahabat Sampah!</h2>
+                    <p class="intro">Di bumi kita, ada dua jenis sampah utama yang harus kita pisahkan. Jangan sampai tertukar, ya!</p>
+                    
+                    <div class="materi-grid">
+                        <div class="materi-card organik">
+                            <h3>🌿 ORGANIK</h3>
+                            <p class="character-voice">Halo, aku Si Hijau! Aku suka makan...</p>
+                            <ul>
+                                <li>Sisa Makanan</li>
+                                <li>Daun Kering</li>
+                                <li>Kulit Buah</li>
+                            </ul>
+                            <img src="https://via.placeholder.com/80?text=Organik" alt="Ikon Organik" class="bin-icon">
+                        </div>
+                        
+                        <div class="materi-card anorganik">
+                            <h3>🍾 ANORGANIK</h3>
+                            <p class="character-voice">Hai, aku Si Biru! Aku suka makan...</p>
+                            <ul>
+                                <li>Botol</li>
+                                <li>Kaleng</li>
+                                <li>Plastik</li>
+                            </ul>
+                            <img src="https://via.placeholder.com/80?text=Anorganik" alt="Ikon Anorganik" class="bin-icon">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Game -->
+        <section class="game-section">
+            <h2 class="section-title game-title">🏆 Game Pilah Sampah Kilat!</h2>
+            <p class="game-instruction">Tarik sampah dan masukkan ke tempat yang benar!</p>
+            
+            <div id="game-area">
+                <div class="bins-container">
+                    <div id="bin-organik" class="bin" data-type="organik">
+                        <span class="bin-label">🌿 Hijau (Organik)</span>
+                    </div>
+                    <div id="bin-anorganik" class="bin" data-type="anorganik">
+                        <span class="bin-label">🍾 Biru (Anorganik)</span>
+                    </div>
+                </div>
+                
+                <div id="trash-item-container">
+                    <!-- Sampah akan muncul di sini secara acak -->
+                    <div id="trash-item" class="trash-item" draggable="true" data-type="none"></div>
+                </div>
+
+                <div class="game-controls">
+                    <p id="game-status">Siap bermain?</p>
+                    <p id="score">Skor: 0</p>
+                    <button id="start-btn">Mulai Game!</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="qrcode-section">
+            <h3>Pindai untuk Video Selengkapnya:</h3>
+            <div class="qrcode-container">
+                <img src="https://via.placeholder.com/100x100?text=QR1" alt="QR Code Video"> <!-- Ganti dengan QR Code asli -->
+                <img src="https://via.placeholder.com/100x100?text=QR2" alt="QR Code Video">
+            </div>
+            <p class="footer-callout">"Yuk, pilah sampah dengan bijak!"</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Kemenkes Poltekkes Yogyakarta - Website Edukasi Anak</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
