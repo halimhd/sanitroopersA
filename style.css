@@ -1,289 +1,176 @@
-:root {
-    --primary-green: #4CAF50;
-    --primary-blue: #2196F3;
-    --accent-orange: #FF9800;
-    --bg-color: #E8F5E9;
-    --text-color: #2E3D49;
-    --font-heading: 'Fredoka One', cursive, sans-serif;
-    --font-body: 'Open Sans', sans-serif;
-}
+document.addEventListener('DOMContentLoaded', () => {
 
-body {
-    font-family: var(--font-body);
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    margin: 0;
-    padding: 0;
-}
+    // --- LOGIKA GAME TANGKAP SAMPAH ---
 
-.container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 0 auto;
-}
+    // Data Item Sampah
+    const trashItems = [
+        { name: 'Pisang', icon: '🍌', type: 'organik' },
+        { name: 'Apel', icon: '🍎', type: 'organik' },
+        { name: 'Daun', icon: '🍂', type: 'organik' },
+        { name: 'Botol Plastik', icon: '🍾', type: 'anorganik' },
+        { name: 'Kaleng', icon: '🥫', type: 'anorganik' },
+        { name: 'Bungkus Plastik', icon: '🛍️️', type: 'anorganik' }
+    ];
 
-/* --- Header --- */
-header {
-    background-color: #ffffff;
-    padding: 15px 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
+    // Element Selector
+    const gameCanvas = document.getElementById('game-canvas');
+    const basket = document.getElementById('player-basket');
+    const basketFace = document.getElementById('basket-face');
+    const basketLabel = document.getElementById('basket-label');
+    const scoreDisplay = document.getElementById('game-score');
+    const timerDisplay = document.getElementById('game-timer');
+    const statusDisplay = document.getElementById('game-status');
+    const btnStart = document.getElementById('btn-start');
+    const btnSwitchOrganik = document.getElementById('btn-switch-organik');
+    const btnSwitchAnorganik = document.getElementById('btn-switch-anorganik');
 
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    // Game Variables
+    let score = 0;
+    let timeLeft = 30;
+    let gameInterval = null;
+    let spawnInterval = null;
+    let isPlaying = false;
+    let currentBasketType = 'organik'; // default organik
+    let basketX = 50; // Posisi persen (0 - 100)
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-heading);
-    color: var(--primary-green);
-    font-size: 1.1rem;
-}
+    // Set Tipe Keranjang
+    function setBasketType(type) {
+        currentBasketType = type;
+        if (type === 'organik') {
+            basket.classList.remove('anorganik');
+            basketFace.textContent = '😃';
+            basketLabel.textContent = 'Si Hijau (Organik)';
+            btnSwitchOrganik.classList.add('active');
+            btnSwitchAnorganik.classList.remove('active');
+        } else {
+            basket.classList.add('anorganik');
+            basketFace.textContent = '🕶️';
+            basketLabel.textContent = 'Si Biru (Anorganik)';
+            btnSwitchAnorganik.classList.add('active');
+            btnSwitchOrganik.classList.remove('active');
+        }
+    }
 
-nav a {
-    margin-left: 15px;
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 600;
-    transition: color 0.2s;
-}
+    // Gerakkan Keranjang
+    function moveBasket(direction) {
+        if (!isPlaying) return;
+        if (direction === 'left' && basketX > 10) basketX -= 8;
+        if (direction === 'right' && basketX < 90) basketX += 8;
+        basket.style.left = basketX + '%';
+    }
 
-nav a:hover {
-    color: var(--primary-green);
-}
+    // Event Listener Keyboard
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+            moveBasket('left');
+        } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+            moveBasket('right');
+        } else if (e.key === '1') {
+            setBasketType('organik');
+        } else if (e.key === '2') {
+            setBasketType('anorganik');
+        }
+    });
 
-/* --- Banner Gambar Poster --- */
-.hero-banner {
-    margin: 25px 0;
-    text-align: center;
-}
+    // Event Listener Tombol Switch Modal
+    btnSwitchOrganik.addEventListener('click', () => setBasketType('organik'));
+    btnSwitchAnorganik.addEventListener('click', () => setBasketType('anorganik'));
 
-.main-poster-img {
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    border: 4px solid #ffffff;
-}
+    // Panggil Sampah Jatuh
+    function spawnTrash() {
+        if (!isPlaying) return;
 
-/* --- Section Title --- */
-.section-title {
-    font-family: var(--font-heading);
-    text-align: center;
-    font-size: 2rem;
-    color: #1B5E20;
-    margin-bottom: 20px;
-}
+        const randomTrash = trashItems[Math.floor(Math.random() * trashItems.length)];
+        const trashElem = document.createElement('div');
+        trashElem.classList.add('falling-item');
+        trashElem.textContent = randomTrash.icon;
+        
+        // Random Posisi Horisontal
+        const startX = Math.floor(Math.random() * 80) + 10;
+        trashElem.style.left = startX + '%';
+        trashElem.style.top = '0px';
 
-/* --- Edukasi --- */
-.education-section {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-}
+        gameCanvas.appendChild(trashElem);
 
-.materi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
+        let itemY = 0;
+        const fallSpeed = 3 + Math.random() * 3; // Kecepatan acak
 
-.materi-card {
-    padding: 25px;
-    border-radius: 18px;
-    color: #ffffff;
-    text-align: center;
-    position: relative;
-}
+        const fallInterval = setInterval(() => {
+            if (!isPlaying) {
+                clearInterval(fallInterval);
+                trashElem.remove();
+                return;
+            }
 
-.organik { background-color: var(--primary-green); }
-.anorganik { background-color: var(--primary-blue); }
+            itemY += fallSpeed;
+            trashElem.style.top = itemY + 'px';
 
-.card-badge {
-    background: rgba(0,0,0,0.2);
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-}
+            // Cek Tabrakan dengan Keranjang (bottom area)
+            const canvasHeight = gameCanvas.clientHeight;
+            if (itemY >= canvasHeight - 70) {
+                // Cek Posisi Horisontal
+                const trashX = startX;
+                if (Math.abs(trashX - basketX) < 15) {
+                    // Berhasil Ditangkap!
+                    if (randomTrash.type === currentBasketType) {
+                        score += 10;
+                        statusDisplay.textContent = `Tepat! +10 (${randomTrash.name})`;
+                    } else {
+                        score = Math.max(0, score - 5);
+                        statusDisplay.textContent = `Salah Keranjang! -5`;
+                    }
+                    scoreDisplay.textContent = score;
+                    clearInterval(fallInterval);
+                    trashElem.remove();
+                }
+            }
 
-.character-avatar {
-    font-size: 3.5rem;
-    margin: 10px 0;
-}
+            // Hilang Jika Mencapai Dasar Canvas
+            if (itemY >= canvasHeight - 30) {
+                clearInterval(fallInterval);
+                trashElem.remove();
+            }
+        }, 30);
+    }
 
-.materi-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    margin: 5px 0;
-}
+    // Mulai Permainan
+    function startGame() {
+        score = 0;
+        timeLeft = 30;
+        isPlaying = true;
+        scoreDisplay.textContent = score;
+        timerDisplay.textContent = timeLeft + 's';
+        statusDisplay.textContent = 'Game Dimulai!';
+        btnStart.disabled = true;
 
-.character-voice {
-    font-style: italic;
-    font-weight: 600;
-    background: rgba(255,255,255,0.2);
-    padding: 8px;
-    border-radius: 10px;
-}
+        // Reset Keranjang
+        basketX = 50;
+        basket.style.left = '50%';
+        setBasketType('organik');
 
-.trash-list {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    font-weight: 600;
-    font-size: 1.1rem;
-}
+        // Timer
+        gameInterval = setInterval(() => {
+            timeLeft--;
+            timerDisplay.textContent = timeLeft + 's';
 
-.trash-list li {
-    margin: 8px 0;
-    background: rgba(255,255,255,0.15);
-    padding: 6px 12px;
-    border-radius: 8px;
-}
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }, 1000);
 
-.reminder-box {
-    margin-top: 25px;
-    background: #FFF9C4;
-    border: 3px dashed #FBC02D;
-    padding: 15px;
-    border-radius: 15px;
-    text-align: center;
-}
+        // Spawn Sampah Setiap 1.2 Detik
+        spawnInterval = setInterval(spawnTrash, 1200);
+    }
 
-.reminder-box h3 {
-    margin: 0;
-    color: #D84315;
-    font-family: var(--font-heading);
-}
+    // Selesai Permainan
+    function endGame() {
+        isPlaying = false;
+        clearInterval(gameInterval);
+        clearInterval(spawnInterval);
+        btnStart.disabled = false;
+        statusDisplay.textContent = `Selesai! Skor Akhir: ${score}`;
+        alert(`Permainan Selesai!\nSkor Akhir Anda: ${score}\nTerima kasih sudah memilah sampah! 🎉`);
+    }
 
-/* --- Game --- */
-.game-section {
-    background: #FFF8E1;
-    border: 4px solid var(--accent-orange);
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.bins-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.bin {
-    width: 220px;
-    height: 180px;
-    border-radius: 15px 15px 10px 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    transition: transform 0.2s;
-    border: 3px solid rgba(0,0,0,0.1);
-}
-
-.organik-bin { background-color: var(--primary-green); }
-.anorganik-bin { background-color: var(--primary-blue); }
-
-.bin-face { font-size: 3rem; }
-
-.bin-label {
-    font-family: var(--font-heading);
-    margin-top: 10px;
-    background: rgba(0,0,0,0.2);
-    padding: 4px 10px;
-    border-radius: 8px;
-}
-
-.bin.drag-over {
-    transform: scale(1.08);
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-}
-
-#trash-item-container {
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 25px 0;
-}
-
-.trash-item {
-    padding: 12px 24px;
-    background: #ffffff;
-    border: 3px solid var(--accent-orange);
-    border-radius: 30px;
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
-    cursor: grab;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    user-select: none;
-}
-
-.trash-item:active { cursor: grabbing; }
-
-#score {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    color: var(--accent-orange);
-}
-
-#start-btn {
-    background: var(--accent-orange);
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: 0 4px 0 #E65100;
-}
-
-#start-btn:active {
-    transform: translateY(4px);
-    box-shadow: none;
-}
-
-/* --- QR Code & Footer --- */
-.qrcode-section {
-    text-align: center;
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 20px;
-}
-
-.callout-bubble {
-    display: inline-block;
-    background: #E8F5E9;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
-    color: var(--primary-green);
-    margin-top: 10px;
-}
-
-footer {
-    background: #2E3D49;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    margin-top: 40px;
-}
+    btnStart.addEventListener('click', startGame);
+});
