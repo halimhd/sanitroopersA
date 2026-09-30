@@ -3,99 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pilah Sampah Seru!</title>
+    <title>Pilah Sampah Seru! - Kemenkes Poltekkes Yogyakarta</title>
     <link rel="stylesheet" href="style.css">
     <!-- Font modern dan ramah anak -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Navigation Bar -->
     <header>
         <div class="container header-content">
-            <img src="https://via.placeholder.com/100x40/4CAF50/FFFFFF?text=Logo" alt="Kemenkes Logo" class="logo"> <!-- Ganti dengan logo asli -->
-            <h1>Ayo Pilah Sampah!</h1>
+            <div class="brand">
+                <span class="logo-icon">🏥</span>
+                <span class="brand-name">Kemenkes Poltekkes Yogyakarta</span>
+            </div>
+            <nav>
+                <a href="#edukasi">Edukasi</a>
+                <a href="#permainan">Permainan</a>
+                <a href="#video">Video QR</a>
+            </nav>
         </div>
     </header>
 
     <main class="container">
         
-        <!-- Bagian Edukasi -->
-        <section class="education-section">
-            <div class="poster-summary">
-                <img src="image_0.png" alt="Poster Edukasi Pilah Sampah" class="poster-img"> <!-- Pastikan gambar image_0.png ada di folder yang sama -->
-                <div class="poster-text">
-                    <h2 class="section-title">Kenalan yuk sama Sahabat Sampah!</h2>
-                    <p class="intro">Di bumi kita, ada dua jenis sampah utama yang harus kita pisahkan. Jangan sampai tertukar, ya!</p>
-                    
-                    <div class="materi-grid">
-                        <div class="materi-card organik">
-                            <h3>🌿 ORGANIK</h3>
-                            <p class="character-voice">Halo, aku Si Hijau! Aku suka makan...</p>
-                            <ul>
-                                <li>Sisa Makanan</li>
-                                <li>Daun Kering</li>
-                                <li>Kulit Buah</li>
-                            </ul>
-                            <img src="https://via.placeholder.com/80?text=Organik" alt="Ikon Organik" class="bin-icon">
-                        </div>
-                        
-                        <div class="materi-card anorganik">
-                            <h3>🍾 ANORGANIK</h3>
-                            <p class="character-voice">Hai, aku Si Biru! Aku suka makan...</p>
-                            <ul>
-                                <li>Botol</li>
-                                <li>Kaleng</li>
-                                <li>Plastik</li>
-                            </ul>
-                            <img src="https://via.placeholder.com/80?text=Anorganik" alt="Ikon Anorganik" class="bin-icon">
-                        </div>
-                    </div>
+        <!-- Banner Utama Gambar Poster -->
+        <section class="hero-banner">
+            <img src="watermarked_img_16864918516121006371.jpg" alt="Poster Edukasi Pilah Sampah" class="main-poster-img">
+        </section>
+
+        <!-- Bagian Edukasi Karakter -->
+        <section id="edukasi" class="education-section">
+            <h2 class="section-title">Mengenal Sahabat Sampah</h2>
+            
+            <div class="materi-grid">
+                <!-- Kartu Organik -->
+                <div class="materi-card organik">
+                    <div class="card-badge">ORGANIK</div>
+                    <div class="character-avatar">🗑️🟩</div>
+                    <h3>Si Hijau</h3>
+                    <p class="character-voice">"Suka makan Sisa Makanan & Daun!"</p>
+                    <ul class="trash-list">
+                        <li>🍌 Sisa Makanan</li>
+                        <li>🍂 Daun Kering</li>
+                        <li>🍎 Kulit Buah</li>
+                    </ul>
                 </div>
+                
+                <!-- Kartu Anorganik -->
+                <div class="materi-card anorganik">
+                    <div class="card-badge">ANORGANIK</div>
+                    <div class="character-avatar">🗑️🟦</div>
+                    <h3>Si Biru</h3>
+                    <p class="character-voice">"Suka makan Botol, Kaleng & Plastik!"</p>
+                    <ul class="trash-list">
+                        <li>🍾 Botol Plastik</li>
+                        <li>🥫 Kaleng Minuman</li>
+                        <li>🥤 Gelas Plastik</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="reminder-box">
+                <h3>JANGAN SAMPAI TERTUKAR!</h3>
+                <p>INGAT: <strong>Organik ke Si Hijau</strong>, <strong>Anorganik ke Si Biru!</strong> 👍</p>
             </div>
         </section>
 
-        <!-- Bagian Game -->
-        <section class="game-section">
-            <h2 class="section-title game-title">🏆 Game Pilah Sampah Kilat!</h2>
-            <p class="game-instruction">Tarik sampah dan masukkan ke tempat yang benar!</p>
+        <!-- Bagian Mini Game -->
+        <section id="permainan" class="game-section">
+            <h2 class="section-title game-title">🎮 Permainan: Ambil & Pilah Sampah!</h2>
+            <p class="game-instruction">Tarik item sampah di bawah, lalu jatuhkan ke dalam tong yang tepat!</p>
             
             <div id="game-area">
                 <div class="bins-container">
-                    <div id="bin-organik" class="bin" data-type="organik">
-                        <span class="bin-label">🌿 Hijau (Organik)</span>
+                    <div id="bin-organik" class="bin organik-bin" data-type="organik">
+                        <div class="bin-face">😃</div>
+                        <span class="bin-label">🌿 Si Hijau (Organik)</span>
                     </div>
-                    <div id="bin-anorganik" class="bin" data-type="anorganik">
-                        <span class="bin-label">🍾 Biru (Anorganik)</span>
+                    <div id="bin-anorganik" class="bin anorganik-bin" data-type="anorganik">
+                        <div class="bin-face">🕶️</div>
+                        <span class="bin-label">🍾 Si Biru (Anorganik)</span>
                     </div>
                 </div>
                 
                 <div id="trash-item-container">
-                    <!-- Sampah akan muncul di sini secara acak -->
-                    <div id="trash-item" class="trash-item" draggable="true" data-type="none"></div>
+                    <div id="trash-item" class="trash-item" draggable="true" data-type="none">
+                        🍌 Kulit Pisang
+                    </div>
                 </div>
 
                 <div class="game-controls">
-                    <p id="game-status">Siap bermain?</p>
-                    <p id="score">Skor: 0</p>
+                    <p id="game-status">Klik "Mulai Game" untuk bermain!</p>
+                    <div id="score">Skor: 0</div>
                     <button id="start-btn">Mulai Game!</button>
                 </div>
             </div>
         </section>
         
-        <section class="qrcode-section">
-            <h3>Pindai untuk Video Selengkapnya:</h3>
-            <div class="qrcode-container">
-                <img src="https://via.placeholder.com/100x100?text=QR1" alt="QR Code Video"> <!-- Ganti dengan QR Code asli -->
-                <img src="https://via.placeholder.com/100x100?text=QR2" alt="QR Code Video">
+        <!-- Bagian QR Code & Video -->
+        <section id="video" class="qrcode-section">
+            <h3 class="section-title">Materi Video & QR Code</h3>
+            <p>Pindai QR Code pada poster di atas untuk menyaksikan video edukasi selengkapnya!</p>
+            
+            <div class="callout-bubble">
+                🦸‍♂️ <span>"Yuk, pilah sampah dengan bijak!"</span>
             </div>
-            <p class="footer-callout">"Yuk, pilah sampah dengan bijak!"</p>
         </section>
 
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Kemenkes Poltekkes Yogyakarta - Website Edukasi Anak</p>
+            <p>&copy; 2026 Kemenkes Poltekkes Yogyakarta - Website Edukasi Sanitasi Lingkungan</p>
         </div>
     </footer>
 
