@@ -3,119 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pilah Sampah Seru! - Kemenkes Poltekkes Yogyakarta</title>
+    <title>Pilah Sampah Seru - Edukasi Sanitasi Lingkungan</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font modern dan ramah anak -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Navigation Bar -->
+    <!-- Header & Navigation -->
     <header>
-        <div class="container header-content">
-            <div class="brand">
-                <span class="logo-icon">🏥</span>
-                <span class="brand-name">Kemenkes Poltekkes Yogyakarta</span>
+        <div class="container header-container">
+            <div class="logo">
+                <span class="logo-icon">🌱</span>
+                <span class="logo-text">PilahSampah<span class="highlight">Anak</span></span>
             </div>
             <nav>
-                <a href="#edukasi">Edukasi</a>
-                <a href="#permainan">Permainan</a>
-                <a href="#video">Video QR</a>
+                <ul>
+                    <li><a href="#hero">Beranda</a></li>
+                    <li><a href="#materi">Materi Edukasi</a></li>
+                    <li><a href="#dampak">Dampak & Tips</a></li>
+                    <li><a href="#game">Mini Game</a></li>
+                    <li><a href="#qr-section">Video QR</a></li>
+                </ul>
             </nav>
         </div>
     </header>
 
-    <main class="container">
-        
-        <!-- Banner Utama Gambar Poster -->
-        <section class="hero-banner">
-            <img src="watermarked_img_16864918516121006371.jpg" alt="Poster Edukasi Pilah Sampah" class="main-poster-img">
-        </section>
-
-        <!-- Bagian Edukasi Karakter -->
-        <section id="edukasi" class="education-section">
-            <h2 class="section-title">Mengenal Sahabat Sampah</h2>
-            
-            <div class="materi-grid">
-                <!-- Kartu Organik -->
-                <div class="materi-card organik">
-                    <div class="card-badge">ORGANIK</div>
-                    <div class="character-avatar">🗑️🟩</div>
-                    <h3>Si Hijau</h3>
-                    <p class="character-voice">"Suka makan Sisa Makanan & Daun!"</p>
-                    <ul class="trash-list">
-                        <li>🍌 Sisa Makanan</li>
-                        <li>🍂 Daun Kering</li>
-                        <li>🍎 Kulit Buah</li>
-                    </ul>
-                </div>
-                
-                <!-- Kartu Anorganik -->
-                <div class="materi-card anorganik">
-                    <div class="card-badge">ANORGANIK</div>
-                    <div class="character-avatar">🗑️🟦</div>
-                    <h3>Si Biru</h3>
-                    <p class="character-voice">"Suka makan Botol, Kaleng & Plastik!"</p>
-                    <ul class="trash-list">
-                        <li>🍾 Botol Plastik</li>
-                        <li>🥫 Kaleng Minuman</li>
-                        <li>🥤 Gelas Plastik</li>
-                    </ul>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-text">
+                <span class="badge">Edukasi Sanitasi Lingkungan</span>
+                <h1>Ayo Jadi Pahlawan Lingkungan Cilik! 🦸‍♂️🦸‍♀️</h1>
+                <p>Belajar memilah sampah organik dan anorganik dengan mudah, seru, dan menyenangkan. Jaga bumi kita agar tetap bersih dan sehat!</p>
+                <div class="hero-buttons">
+                    <a href="#materi" class="btn btn-primary">Mulai Belajar 📚</a>
+                    <a href="#game" class="btn btn-secondary">Main Game 🎮</a>
                 </div>
             </div>
-
-            <div class="reminder-box">
-                <h3>JANGAN SAMPAI TERTUKAR!</h3>
-                <p>INGAT: <strong>Organik ke Si Hijau</strong>, <strong>Anorganik ke Si Biru!</strong> 👍</p>
+            <div class="hero-image">
+                <img src="watermarked_img_16864918516121006371.jpg" alt="Poster Edukasi Pilah Sampah" class="poster-preview">
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Bagian Mini Game -->
-        <section id="permainan" class="game-section">
-            <h2 class="section-title game-title">🎮 Permainan: Ambil & Pilah Sampah!</h2>
-            <p class="game-instruction">Tarik item sampah di bawah, lalu jatuhkan ke dalam tong yang tepat!</p>
-            
-            <div id="game-area">
-                <div class="bins-container">
-                    <div id="bin-organik" class="bin organik-bin" data-type="organik">
-                        <div class="bin-face">😃</div>
-                        <span class="bin-label">🌿 Si Hijau (Organik)</span>
-                    </div>
-                    <div id="bin-anorganik" class="bin anorganik-bin" data-type="anorganik">
-                        <div class="bin-face">🕶️</div>
-                        <span class="bin-label">🍾 Si Biru (Anorganik)</span>
-                    </div>
-                </div>
-                
-                <div id="trash-item-container">
-                    <div id="trash-item" class="trash-item" draggable="true" data-type="none">
-                        🍌 Kulit Pisang
-                    </div>
-                </div>
-
-                <div class="game-controls">
-                    <p id="game-status">Klik "Mulai Game" untuk bermain!</p>
-                    <div id="score">Skor: 0</div>
-                    <button id="start-btn">Mulai Game!</button>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Bagian QR Code & Video -->
-        <section id="video" class="qrcode-section">
-            <h3 class="section-title">Materi Video & QR Code</h3>
-            <p>Pindai QR Code pada poster di atas untuk menyaksikan video edukasi selengkapnya!</p>
-            
-            <div class="callout-bubble">
-                🦸‍♂️ <span>"Yuk, pilah sampah dengan bijak!"</span>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
+    <!-- Section 1: Pengertian Sanitasi & Pemilahan -->
+    <section id="materi" class="materi-section">
         <div class="container">
-            <p>&copy; 2026 Kemenkes Poltekkes Yogyakarta - Website Edukasi Sanitasi Lingkungan</p>
+            <div class="section-header">
+                <h2>1. Mengenal Pemilahan Sampah</h2>
+                <p>Mengapa kita harus memisahkan sampah? Yuk, kenalan dengan dua sahabat tempat sampah!</p>
+            </div>
+
+            <!-- Kartu Karakter Poster -->
+            <div class="materi-cards">
+                <!-- Organik -->
+                <div class="card card-organik">
+                    <div class="card-icon">🌿</div>
+                    <span class="card-tag">SAMPAH ORGANIK</span>
+                    <h3>Si Hijau</h3>
+                    <p class="character-quote">"Aku suka makan sisa makanan, buah, dan daun!"</p>
+                    <div class="card-body">
+                        <h4>Contoh Sampah:</h4>
+                        <ul>
+                            <li>🍌 Sisa buah & sayur</li>
+                            <li>🍞 Sisa makanan & nasi</li>
+                            <li>🍂 Daun & ranting kering</li>
+                            <li>🥚 Cangkang telur</li>
+                        </ul>
+                        <div class="info-box">
+                            💡 <strong>Fakta Unik:</strong> Sampah organik bisa membusuk alami dan diolah menjadi <strong>pupuk kompos</strong> yang menyuburkan tanaman!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anorganik -->
+                <div class="card card-anorganik">
+                    <div class="card-icon">🍾</div>
+                    <span class="card-tag">SAMPAH ANORGANIK</span>
+                    <h3>Si Biru</h3>
+                    <p class="character-quote">"Aku suka makan botol, kaleng, dan plastik!"</p>
+                    <div class="card-body">
+                        <h4>Contoh Sampah:</h4>
+                        <ul>
+                            <li>🥤 Botol & gelas plastik</li>
+                            <li>🥫 Kaleng minuman/makanan</li>
+                            <li>🛍️ Kantong plastik & bungkus snack</li>
+                            <li>📦 Dus, kertas, & karton</li>
+                        </ul>
+                        <div class="info-box">
+                            💡 <strong>Fakta Unik:</strong> Sampah anorganik sukar membusuk, tapi bisa <strong>didaur ulang</strong> menjadi barang berguna baru!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slogan-banner">
+                <h3>⚠️ JANGAN SAMPAI TERTUKAR! ⚠️</h3>
+                <p>INGAT: Organik ke <strong>Si Hijau</strong>, Anorganik ke <strong>Si Biru</strong>! 👍</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Edukasi Tambahan (Dampak & Langkah 3R) -->
+    <section id="dampak" class="dampak-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>2. Kenapa Memilah Sampah Itu Penting?</h2>
+                <p>Lihat bedanya lingkungan yang bersih dan yang penuh sampah!</p>
+            </div>
+
+            <div class="grid-2-col">
+                <div class="feature-box danger">
+                    <h3>❌ Akibat Jika Sampah Dibuang Sembarangan:</h3>
+                    <ul>
+                        <li>🌊 <strong>Banjir:</strong> Sampah plastik menyumbat selokan dan sungai.</li>
+                        <li>🦟 <strong>Penyakit:</strong> Penumpukan sampah menjadi sarang lalat dan nyamuk demam berdarah.</li>
+                        <li>😷 <strong>Bau Bau & Kotor:</strong> Udara menjadi tidak segar dan merusak pemandangan.</li>
+                        <li>🐢 <strong>Bahaya Bagi Hewan:</strong> Hewan laut sering mengira plastik sebagai makanan.</li>
+                    </ul>
+                </div>
+
+                <div class="feature-box success">
+                    <h3>✅ Langkah Mudah 3R di Rumah:</h3>
+                    <ul>
+                        <li>♻️ <strong>Reduce (Kurangi):</strong> Kurangi penggunaan plastik sekali pakai. Bawa botol minum sendiri!</li>
+                        <li>🔄 <strong>Reuse (Gunakan Kembali):</strong> Pakai kembali kantong atau wadah yang masih bagus.</li>
+                        <li>🎨 <strong>Recycle (Daur Ulang):</strong> Buat kerajinan tangan dari botol atau kaleng bekas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Game Interaktif Pemilahan Sampah -->
+    <section id="game" class="game-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🎮 Game Interaktif: Tangkap & Pilah Sampah!</h2>
+                <p>Bantu Si Hijau dan Si Biru menangkap sampah yang jatuh dari atas!</p>
+            </div>
+
+            <div class="game-board">
+                <!-- Info Panel Game -->
+                <div class="game-stats">
+                    <div class="stat-item">
+                        <span>Skor Anda:</span>
+                        <strong id="game-score">0</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Waktu Sisa:</span>
+                        <strong id="game-timer">30s</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Status:</span>
+                        <strong id="game-status">Siap Bermain</strong>
+                    </div>
+                </div>
+
+                <!-- Arena Permainan -->
+                <div id="game-canvas">
+                    <div id="player-basket" class="basket">
+                        <span id="basket-face">😃</span>
+                        <span id="basket-label">Si Hijau (Organik)</span>
+                    </div>
+                </div>
+
+                <!-- Kontrol Game -->
+                <div class="game-controls">
+                    <button id="btn-start" class="btn btn-primary">▶️ Mulai Game</button>
+                    <p class="game-instruction">
+                        <strong>Cara Main:</strong> Tekan tombol panah ⬅️ dan ➡️ pada keyboard (atau tombol kiri/kanan di layar HP) untuk menggeser keranjang. Ganti tipe keranjang sesuai sampah yang jatuh!
+                    </p>
+                    <div class="switch-mode">
+                        <button id="btn-switch-organik" class="btn-switch green active">🌿 Mode Organik (Kiri/A)</button>
+                        <button id="btn-switch-anorganik" class="btn-switch blue">🍾 Mode Anorganik (Kanan/D)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Video & QR Code -->
+    <section id="qr-section" class="qr-section">
+        <div class="container">
+            <div class="qr-card">
+                <div class="qr-text">
+                    <h2>🎬 Saksikan Video Edukasi Lengkap!</h2>
+                    <p>Pindai QR Code di samping menggunakan ponselmu untuk menonton materi pemilahan sampah selengkapnya dari Kemenkes Poltekkes Yogyakarta!</p>
+                    <span class="speech-bubble">🦸‍♂️ "Yuk, pilah sampah dengan bijak untuk masa depan bumi!"</span>
+                </div>
+                <div class="qr-images">
+                    <div class="qr-box">
+                        <div class="qr-placeholder">📷</div>
+                        <span>Scan Video 1</span>
+                    </div>
+                    <div class="qr-box">
+                        <div class="qr-placeholder">📷</div>
+                        <span>Scan Video 2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <p>&copy; 2026 Kemenkes Poltekkes Yogyakarta | Website Edukasi Sanitasi & Pemilahan Sampah Anak</p>
         </div>
     </footer>
 
